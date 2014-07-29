@@ -161,6 +161,7 @@ module.exports = function(grunt) {
         dest: 'assets/css/gtfont',
         destCss: 'assets/less/fonts',
         options: {
+          relativeFontPath: 'gtfont',
           //engine: 'node',
           font: 'gunjo',
           stylesheet: 'less',
@@ -169,7 +170,7 @@ module.exports = function(grunt) {
             classPrefix: 'gticon-',
             mixinPrefix: 'mixin-gticon-'
           },
-          //htmlDemo: false
+          htmlDemo: false
         }
       }
     }

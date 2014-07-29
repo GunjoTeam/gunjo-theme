@@ -5,6 +5,9 @@ module.exports = function(grunt) {
   // Show elapsed time
   require('time-grunt')(grunt);
 
+  // Webfont
+  grunt.loadNpmTasks('grunt-webfont');
+
   var jsFileList = [
     'assets/vendor/bootstrap/js/transition.js',
     'assets/vendor/bootstrap/js/alert.js',
@@ -151,6 +154,24 @@ module.exports = function(grunt) {
           '*.php'
         ]
       }
+    },
+    webfont: {
+      gtfont: {
+        src: 'icons/*.svg',
+        dest: 'assets/css/gtfont',
+        destCss: 'assets/less/fonts',
+        options: {
+          //engine: 'node',
+          font: 'gunjo',
+          stylesheet: 'less',
+          templateOptions: {
+            baseClass: 'gticon',
+            classPrefix: 'gticon-',
+            mixinPrefix: 'mixin-gticon-'
+          },
+          //htmlDemo: false
+        }
+      }
     }
   });
 
@@ -160,12 +181,14 @@ module.exports = function(grunt) {
   ]);
   grunt.registerTask('dev', [
     'jshint',
+    'webfont',
     'less:dev',
     'autoprefixer:dev',
-    'concat'
+    'concat',
   ]);
   grunt.registerTask('build', [
     'jshint',
+    'webfont',
     'less:build',
     'autoprefixer:build',
     'uglify',
